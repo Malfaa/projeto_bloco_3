@@ -1,5 +1,3 @@
-from Status import Status
-
 prescricoes=[]
 
 """_summary_
@@ -37,7 +35,7 @@ def adicionar_prescricao():
     'id': prescricao_id,
     'descricao': prescricao_desc,
     'emissao': prescricao_emissao,
-    'status': Status.PENDENTE.value,
+    'status': "Pendente",
     'validade': prescricao_validade,
     'prioridade': prescricao_prioridade,
     'prescritor': prescritor,
@@ -84,7 +82,7 @@ def selecionar_prescricao():
         elif opcao == '3':
             break
         else:
-            print("Opção inválida, tente novamente.")
+            print("\nOpção inválida, tente novamente.\n")
 
     
 def marcar_dispensado(id):
@@ -92,7 +90,7 @@ def marcar_dispensado(id):
   """Busca uma prescrição pelo ID e atualiza seu status para DISPENSADA."""
   for p in prescricoes:
     if p['id'] == id:
-        p['status'] = Status.DISPENSADA.value
+        p['status'] = "Dispensada"
         print(f"\nSucesso: Prescrição ID {id} marcada como DISPENSADA.")
         return
     
@@ -122,7 +120,7 @@ while True:
     print("3. Selecionar uma Prescrição (Marcar/Remover)")
     print("0. Sair do programa")
 
-    escolha = int(input("Digite um número:"))
+    escolha = input("Digite um número: ")
     match escolha:
         case 1:
             listar_prescricoes()
@@ -133,4 +131,4 @@ while True:
         case 0:
             break
         case _:
-            print("Comando inválido, tente novamente!")
+            print("\nComando inválido, tente novamente!\n")
