@@ -7,10 +7,10 @@ metadados explicados:
     data de criação -> Data de Emissão
     status -> Status da Prescrição
     prazo final -> Data de Validade da Receita
-    prioridadeprescricao_prioridadeência -> Prioridade / Tipo de Uso
+    prioridade_prescricao -> Prioridade / Tipo de Uso
     entre outros atributos... -> {
+        prescritor,
         registro_profissional,
-        assinatura_digital
     }
 """
 
