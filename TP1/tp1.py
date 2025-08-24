@@ -16,7 +16,7 @@ metadados explicados:
 
 def adicionar_prescricao():
   """ Função que cria uma nova prescrição e adiciona a lista de prescrições"""
-  print("=== Adicionar Tarefa ===\n\n")
+  print("=== Adicionar Tarefa ===\n")
 
   prescricao_id = input("ID da Prescrição (Ex:1): ")
   prescricao_desc = input("Descrição (Ex: 'Amoxicilina para João'): ")
@@ -30,12 +30,12 @@ def adicionar_prescricao():
       if p['id'] == prescricao_id:
           print("\nERRO: Já existe uma prescrição com este ID. Tente novamente.")
           return
-  
+
   nova_prescricao = {
     'id': prescricao_id,
     'descricao': prescricao_desc,
     'emissao': prescricao_emissao,
-    'status': "Pendente",
+    'status': "PENDENTE",
     'validade': prescricao_validade,
     'prioridade': prescricao_prioridade,
     'prescritor': prescritor,
@@ -44,16 +44,19 @@ def adicionar_prescricao():
   prescricoes.append(nova_prescricao)
   print("\nPrescrição adicionada com sucesso!")
 
-def listar_prescricoes(): 
+def listar_prescricoes():
   """Funçao que faz a listagem de todas as prescrições disponíveis"""
   print("=== Listar Prescrições ===\n")
 
-  for p in prescricoes:
-    print(f"ID: {p['id']} | Descrição: {p['descricao']} | Status: {p['status']}")
-    print(f"Data de Emissao: {p['emissao']} | Data de Validade: {p['validade']} | Prioridade: {p['prioridade']}")
-    print(f"Prescritor: {p['prescritor']} | Registro do Prescritor: {p['registro']}")
-    print("===========---============")
-    
+  if len(prescricoes) == 0:
+    print("Não há prescrições disponíveis.\n")
+  else:
+    for p in prescricoes:
+      print(f"ID: {p['id']} | Descrição: {p['descricao']} | Status: {p['status']}")
+      print(f"Data de Emissao: {p['emissao']} | Data de Validade: {p['validade']} | Prioridade: {p['prioridade']}")
+      print(f"Prescritor: {p['prescritor']} | Registro do Prescritor: {p['registro']}")
+      print("===========---============")
+
 def selecionar_prescricao():
     """Função que possibilita escolher entre ações em uma prescrição específica (Marcar/Remover)."""
     print("\n=== Selecionar Prescrição ===")
@@ -70,30 +73,30 @@ def selecionar_prescricao():
         print("1. Marcar como Dispensada")
         print("2. Remover Prescrição")
         print("3. Voltar ao menu principal")
-        
+
         opcao = input("Digite sua escolha: ")
 
         if opcao == '1':
             marcar_dispensado(id)
-            break 
+            break
         elif opcao == '2':
             remover_prescricao(id)
-            break 
+            break
         elif opcao == '3':
             break
         else:
-            print("\nOpção inválida, tente novamente.\n")
+            print("Opção inválida, tente novamente.")
 
-    
+
 def marcar_dispensado(id):
-  print("=== Marcar Tarefa como Concluída ===\n")
   """Busca uma prescrição pelo ID e atualiza seu status para DISPENSADA."""
+  print("=== Marcar Tarefa como Concluída ===\n")
   for p in prescricoes:
     if p['id'] == id:
-        p['status'] = "Dispensada"
-        print(f"\nSucesso: Prescrição ID {id} marcada como DISPENSADA.")
+        p['status'] = "DISPENSADA"
+        print(f"Sucesso: Prescrição ID {id} marcada como DISPENSADA.\n")
         return
-    
+
   print(f"\nERRO: Prescrição com ID {id} não encontrada.")
 
 def remover_prescricao(id):
@@ -103,13 +106,13 @@ def remover_prescricao(id):
   for p in prescricoes:
         if p['id'] == id:
             prescricao_encontrada = p
-            break 
-        
+            break
+
   if prescricao_encontrada:
       prescricoes.remove(prescricao_encontrada)
-      print(f"\nSucesso: Prescrição ID {id} foi removida.")
+      print(f"Sucesso: Prescrição ID {id} foi removida.\n")
   else:
-      print(f"\nERRO: Prescrição com ID {id} não encontrada.")
+      print(f"ERRO: Prescrição com ID {id} não encontrada.\n")
 
 
 while True:
@@ -131,4 +134,4 @@ while True:
         case 0:
             break
         case _:
-            print("\nComando inválido, tente novamente!\n")
+            print("\nComando inválido, tente novamente!")
